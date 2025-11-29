@@ -1,7 +1,10 @@
 package com.example
 
+// Asegúrate de importar los 3 objetos de repositorio
 import com.example.repository.Artists
-import com.example.repository.Albums // <--- 1. IMPORTA EL OBJETO ALBUMS
+import com.example.repository.Albums
+import com.example.repository.Tracks // <--- Nuevo Import
+
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.server.application.*
@@ -29,8 +32,11 @@ fun Application.configureDatabases() {
     val database = Database.connect(HikariDataSource(hikariConfig))
 
     transaction(database) {
-        // SchemaUtils.create(Users)
-        SchemaUtils.create(Artists) // Primero Artistas
-        SchemaUtils.create(Albums)  // <--- 2. AGREGA ESTA LÍNEA (Después de artistas)
+        // SchemaUtils.create(Users) // Si usas usuarios, descomenta esto
+
+        // El orden importa para las Claves Foráneas:
+        SchemaUtils.create(Artists) // 1. Primero Artistas
+        SchemaUtils.create(Albums)  // 2. Luego Álbumes (depende de Artistas)
+        SchemaUtils.create(Tracks)  // 3. Al final Tracks (depende de ambos)
     }
 }
