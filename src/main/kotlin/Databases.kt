@@ -7,6 +7,7 @@ import io.ktor.server.application.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
+
 // Importa tus tablas aquí
 // import com.example.Users
 
@@ -33,5 +34,6 @@ fun Application.configureDatabases() {
     // Esto verifica que las tablas existan en la BD (Opcional si ya corriste el SQL)
     transaction(database) {
         // SchemaUtils.create(Users)
+        SchemaUtils.create(com.example.repository.Artists)
     }
 }

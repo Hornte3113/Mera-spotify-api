@@ -7,6 +7,7 @@ import com.example.com.example.services.AuthService
 import com.example.com.example.routes.authRoutes
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.*
+import com.example.com.example.services.ArtistService
 
 fun main(args: Array<String>) = EngineMain.main(args)
 
@@ -25,10 +26,15 @@ fun Application.module() {
     val audience = environment.config.property("jwt.audience").getString()
 
     val authService = AuthService(secret, issuer, audience)
+    // Inicializar S3 y Artistas
+    val s3Service = com.example.com.example.services.S3Service(environment.config)
+    val artistService = com.example.services.ArtistService(s3Service)
 
     // 4. Rutas
     routing {
         authRoutes(authService)
+        com.example.routes.artistRoutes(artistService)
+
 
         // Aquí puedes poner una ruta de prueba
         get("/") {
