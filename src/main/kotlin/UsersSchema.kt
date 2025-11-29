@@ -1,62 +1,17 @@
 package com.example
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.serialization.Serializable
-import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
-import org.jetbrains.exposed.sql.transactions.transaction
 
-@Serializable
-data class ExposedUser(val name: String, val age: Int)
+import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.sql.javatime.CurrentDateTime
+import org.jetbrains.exposed.sql.javatime.datetime
 
-class UserService(database: Database) {
-    object Users : Table() {
-        val id = integer("id").autoIncrement()
-        val name = varchar("name", length = 50)
-        val age = integer("age")
+// Definición de la tabla para Exposed (debe coincidir con tu SQL)
+object Users : Table("users") {
+    val id = uuid("id")
+    val username = varchar("username", 50).uniqueIndex()
+    val password = varchar("password", 255)
+    val role = varchar("role", 20).default("USER")
+    val createdAt = datetime("created_at").defaultExpression(CurrentDateTime)
 
-        override val primaryKey = PrimaryKey(id)
-    }
-
-    init {
-        transaction(database) {
-            SchemaUtils.create(Users)
-        }
-    }
-
-    suspend fun create(user: ExposedUser): Int = dbQuery {
-        Users.insert {
-            it[name] = user.name
-            it[age] = user.age
-        }[Users.id]
-    }
-
-    suspend fun read(id: Int): ExposedUser? {
-        return dbQuery {
-            Users.selectAll()
-                .where { Users.id eq id }
-                .map { ExposedUser(it[Users.name], it[Users.age]) }
-                .singleOrNull()
-        }
-    }
-
-    suspend fun update(id: Int, user: ExposedUser) {
-        dbQuery {
-            Users.update({ Users.id eq id }) {
-                it[name] = user.name
-                it[age] = user.age
-            }
-        }
-    }
-
-    suspend fun delete(id: Int) {
-        dbQuery {
-            Users.deleteWhere { Users.id.eq(id) }
-        }
-    }
-
-    private suspend fun <T> dbQuery(block: suspend () -> T): T =
-        newSuspendedTransaction(Dispatchers.IO) { block() }
+    override val primaryKey = PrimaryKey(id)
 }
-

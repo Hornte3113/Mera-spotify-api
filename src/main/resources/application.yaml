@@ -3,7 +3,7 @@
     port = 8080
     }
     application {
-    modules = [ com.tu_nombre.ApplicationKt.module ]
+    modules = [ com.example.ApplicationKt.module ]
     }
   }
     
@@ -12,7 +12,7 @@
     driverClassName = "org.postgresql.Driver"
     jdbcUrl = "jdbc:postgresql://localhost:5432/spotify_db"
     username = "postgres"
-    password = "tu_password"
+    password = "montes123"
   }
     
     # Configuración de JWT (Seguridad)

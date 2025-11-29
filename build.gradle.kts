@@ -51,5 +51,11 @@ dependencies {
 
         // Logging
         implementation("ch.qos.logback:logback-classic:1.4.14")
+    dependencies {
+        // ... tus otras dependencias ...
+
+        // AÑADE ESTA LÍNEA:
+        implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2")
+    }
 
 }
