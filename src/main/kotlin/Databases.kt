@@ -1,6 +1,6 @@
 package com.example
 
-
+import com.example.repository.Artists
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.server.application.*
@@ -31,9 +31,8 @@ fun Application.configureDatabases() {
 
     val database = Database.connect(HikariDataSource(hikariConfig))
 
-    // Esto verifica que las tablas existan en la BD (Opcional si ya corriste el SQL)
     transaction(database) {
         // SchemaUtils.create(Users)
-        SchemaUtils.create(com.example.repository.Artists)
+        SchemaUtils.create(Artists)
     }
 }

@@ -1,11 +1,12 @@
-package com.example.com.example.services
+package com.example.services
+
 
 
 
 import com.example.com.example.models.Artist
-import com.example.com.example.repository.Artists
+import com.example.repository.Artists
 // Asegúrate de importar tu S3Service correctamente
-import com.example.com.example.services.S3Service
+import com.example.services.S3Service
 import kotlinx.coroutines.Dispatchers
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction

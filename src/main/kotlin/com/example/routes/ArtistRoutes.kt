@@ -1,10 +1,11 @@
-package com.example.com.example.routes
+package com.example.routes
 
 
 
 
-import com.example.com.example.services.ArtistService
+import com.example.services.ArtistService // <--- Import limpio
 import io.ktor.http.*
+
 import io.ktor.http.content.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
