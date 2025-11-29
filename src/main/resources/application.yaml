@@ -18,7 +18,8 @@ jwt:
   realm: "Spotify Access"
 
 aws:
-  accessKey: "TU_ACCESS_KEY_DE_AWS"
-  secretKey: "TU_SECRET_KEY_DE_AWS"
+  bucketName: "amzn-bucket-spotify-api01"
   region: "us-east-1"
-  bucketName: "tu-bucket-spotify"
+  accessKey: "ASIAVJFGFXDEGYNPSBPI"
+  secretKey: "GMxfoA0ToyJAAemcI6GbtQG5XRujL2lq2NgIr6WS"
+  sessionToken: "IQoJb3JpZ2luX2VjEPn//////////wEaCXVzLXdlc3QtMiJGMEQCIGbeYej/1SDvp2PpleeSlRlApWVE9go13r8qaYyoDaKMAiBjskDH6tJRQPKKmi5o1Xzq7t4VIurvL+WM07NPGdgbUCq+AgjC//////////8BEAEaDDM2MzI3MzIzODcyOCIM8lYyvY7LtZsm2f6LKpICJ7ni9OpWcCJWacTlZNqIS7ZMhNv5NHMTZmZVFSlG+N7OMUyVoV9sjRr2iIpYzxn/WgUHT7j0dvZzvgr2HKBzej3ly9qfF3QCWHHCRH8nnkKFipD0f4poBrf3lMx/j8EZnBEXB9jqaC0KFhgQI8E8E9o1th5n3bR4giB87MvqAXdXPOcrdG5rO8LTGl+TriAL2FPrdulxQWKKXeSGpcbggwqJFCy1iJ3G3loL4QXQ3DVrWGGI4ZH4D2idAzgMo3RhgoWqJS09eL306SbZ/fBil/NN4BOwhY6EivFA+ntRxHbYSaUNk12rIxlqPPXj0epBefxOdYniiG179NfsprP/lvWPycWSUthExIUArBwbXszCZjD0jqnJBjqeAYqbxXrjy4D5pCOYM2HlwTiF5bR+IxNc1UMhLA53T+JB2lszpvcHjP62PkINj898j2UHdw82kSAXj9xTcYxyxl/Bt4t+G7mkfw9zEkyAWbXss1QE+PavjE4dtrpHu9h+w4eUPwwkF1TYNAgra53J5tjIfXbPXkVDqJEDvx6hun77Gm8k7EYgWEWCRiByk8LQ+3a2JduitYrU8P3kby5E"
