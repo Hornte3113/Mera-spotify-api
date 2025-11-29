@@ -1,4 +1,4 @@
-package com.api.plugins
+package com.example.plugins
 
 
 import io.ktor.serialization.jackson.*

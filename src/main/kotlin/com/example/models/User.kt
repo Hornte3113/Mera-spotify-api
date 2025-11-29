@@ -1,4 +1,4 @@
-package com.example.com.api.models
+package com.example.com.example.models
 
 
 
