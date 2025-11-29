@@ -1,11 +1,10 @@
-
 package com.example.services
 
 import com.example.models.Album
 import com.example.repository.Albums
 import kotlinx.coroutines.Dispatchers
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+// He eliminado el import de SqlExpressionBuilder.eq que causaba ruido
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import java.util.UUID
 
@@ -47,10 +46,11 @@ class AlbumService(private val s3Service: S3Service) {
         }
     }
 
-    // LISTAR POR ARTISTA (Para ver solo los álbumes de un artista)
+    // LISTAR POR ARTISTA (Aquí estaba el error)
     suspend fun getByArtist(artistId: UUID): List<Album> {
         return dbQuery {
-            Albums.select { Albums.artistId eq artistId }.map {
+            // CORRECCIÓN: Usamos selectAll().where { ... } en lugar de select { ... }
+            Albums.selectAll().where { Albums.artistId eq artistId }.map {
                 Album(
                     it[Albums.id],
                     it[Albums.name],
