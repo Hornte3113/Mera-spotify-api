@@ -1,6 +1,7 @@
 package com.example
 
 import com.example.repository.Artists
+import com.example.repository.Albums // <--- 1. IMPORTA EL OBJETO ALBUMS
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.server.application.*
@@ -8,11 +9,7 @@ import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 
-// Importa tus tablas aquí
-// import com.example.Users
-
 fun Application.configureDatabases() {
-    // Leemos la configuración del archivo application.yaml o application.conf
     val config = environment.config.config("storage")
     val url = config.property("jdbcUrl").getString()
     val user = config.property("username").getString()
@@ -33,6 +30,7 @@ fun Application.configureDatabases() {
 
     transaction(database) {
         // SchemaUtils.create(Users)
-        SchemaUtils.create(Artists)
+        SchemaUtils.create(Artists) // Primero Artistas
+        SchemaUtils.create(Albums)  // <--- 2. AGREGA ESTA LÍNEA (Después de artistas)
     }
 }
