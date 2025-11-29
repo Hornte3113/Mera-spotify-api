@@ -1,0 +1,32 @@
+  ktor {
+    deployment {
+    port = 8080
+    }
+    application {
+    modules = [ com.tu_nombre.ApplicationKt.module ]
+    }
+  }
+    
+    # Configuración de Base de Datos
+    storage {
+    driverClassName = "org.postgresql.Driver"
+    jdbcUrl = "jdbc:postgresql://localhost:5432/spotify_db"
+    username = "postgres"
+    password = "tu_password"
+  }
+    
+    # Configuración de JWT (Seguridad)
+    jwt {
+    secret = "mi_secreto_super_seguro_123"
+    domain = "https://spotify-api.com"
+    audience = "spotify-users"
+    realm = "Spotify Access"
+  }
+    
+    # Configuración de AWS S3
+    aws {
+    accessKey = "TU_ACCESS_KEY_DE_AWS"
+    secretKey = "TU_SECRET_KEY_DE_AWS"
+    region = "us-east-1"
+    bucketName = "tu-bucket-spotify"
+  }
