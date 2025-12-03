@@ -3,11 +3,11 @@ plugins {
     alias(libs.plugins.ktor)
 }
 
-group = "com.example"
+group = "org.musicapi"
 version = "0.0.1"
 
 application {
-    mainClass = "com.example.ApplicationKt"
+    mainClass = "org.musicapi.core.ServerBootstrapKt"
 }
 
 dependencies {

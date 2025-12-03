@@ -1,5 +1,7 @@
-package com.example
+package org.musicapi
 
+import org.musicapi.infrastructure.config.setupJsonSerialization
+import org.musicapi.infrastructure.config.setupRouting
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -13,8 +15,8 @@ class ApplicationTest {
     @Test
     fun testRoot() = testApplication {
         application {
-            configureSerialization()
-            configureRouting()
+            setupJsonSerialization()
+            setupRouting()
         }
         client.get("/").apply {
             assertEquals(HttpStatusCode.OK, status)
